@@ -255,29 +255,36 @@ span{
 .projects-section {
     padding: 20px;
     max-width: 1200px;
-    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  
 }
 
-.filter-menu {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
-}
 
 /* filter-menu améliorer - à tester  */
-/* .filter-menu {
-    display: inline-flex;
+.filter-menu {
+    /* display: inline-block;
     justify-content: center;
     gap: 10px;
     margin-bottom: 20px;
     background: #b74b4b;
     padding: 10px;
+    border-radius: 20px; */
+
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    /* margin-bottom: 20px; */
+    background: #b74b4b;
+    padding: 10px;
     border-radius: 20px;
-} */
+    flex-wrap: wrap;
+    margin: 10px;
+}
 
 .filter-btn {
-    padding: 10px 15px;
+    padding: 5px 10px;
     border: none;
     background-color: #b74b4b;
     color: white;
@@ -292,19 +299,16 @@ span{
 }
 
 .projects-grid {
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-}
+    gap: 20px; */
 
-/* à tester  */
-/* .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    
     gap: 20px;
     display: flex;
     flex-wrap: wrap;
-} */
+    justify-content: center;
+}
 
 .project-card {
     background-color: white;
@@ -312,22 +316,16 @@ span{
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     overflow: hidden;
     transition: transform 0.3s, opacity 0.3s ease-in-out;
-    opacity: 1; /* Fully visible by default */
-    transform: scale(1); /* No scaling initially */
+    opacity: 1; 
+    transform: scale(1); 
+
+
+    width: 300px;
+    /* height: auto; */
+    /* height: 100%; */
+     aspect-ratio: 3 / 2;
 }
 
-/* à tester */
-/* .project-card {
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-    transition: transform 0.3s, opacity 0.3s ease-in-out;
-    opacity: 1;
-    transform: scale(1);
-    width: 300px;
-    height: 300px;
-} */
 
 .project-card.hidden {
     opacity: 0; /* Fades out */
@@ -336,36 +334,54 @@ span{
 }
 
 
-/* à tester  */
-/* .project-card img {
-    width: 100%;
-    height: 100%;
-    display: block;
-    transition: ease 0.7s;
-    overflow: hidden;
-    object-fit: cover;
-} */
 
 .project-card img {
+    /* width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: ease 0.7s;
+    overflow: hidden; */
+
+
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
     display: block;
     transition: ease 0.7s;
     overflow: hidden;
+    aspect-ratio: 3 / 2;
+}
+
+.project-card  a{
+    position: relative;
+}
+
+.project-card a h5
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 20px;
+    color: #000;
+    transform: translate(-50%,-50%);
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    font-weight: 700;
+    
+}
+
+.project-card img h5:hover 
+{
+    opacity: 0;
+    display: none;
 }
 
 .project-card img:hover{
     transform: scale(1.2);
 }
 
-.card-title {
-    padding: 10px;
-    text-align: center;
-    font-weight: bold;
-    background-color: #b74b4b;
-    color: white;
-    z-index: 1;
-}
+
 
 /* mes competences */
 .wrapper
@@ -406,6 +422,7 @@ span{
     border-radius: 13px;
     display: block;
     transition: transform 0.5s;
+    cursor: default;
   
 }
 
@@ -550,7 +567,7 @@ span{
     display: flex;
     flex-direction: column;
     row-gap: 20px;
-    width:500px;
+    max-width:500px;
 }
 
 .contact 
@@ -599,18 +616,6 @@ form button
 /* .contact button:hover {
     background-color: rgba(183, 75, 75, 0.8); 
 } */
-
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Colonne unique sur petits écrans */
-    }
-    .info {
-        border-right: none; /* Enlève la ligne séparatrice sur petits écrans */
-        border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Ligne séparatrice en bas */
-    }
-}
-
 
 /* contact section */
 
@@ -662,6 +667,87 @@ form button
         content: "Web Designer";
     }
 }
+
+@keyframes appear{
+    from{
+        opacity: 0;
+        scale: 0.5;
+    }
+    to{
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+@keyframes appear-0{
+    from{
+        opacity: 0;
+        scale: 0.5;
+    }
+    to{
+        opacity: 1;
+        scale: 1;
+    }
+}
+
+.block-0{
+    animation: appear-0 2s ease-in-out;
+
+}
+
+@keyframes appear-t{
+    from{
+        opacity: 0;
+       transform: translateX(-100px);
+    }
+    to{
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+.block{
+    animation: appear  linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 40%;
+}
+
+.block-2{
+    animation: appear-t  linear;
+    animation-timeline: view();
+    animation-range: entry 0 cover 40%;
+}
+
+footer{
+    text-align: center;
+    font-size: 10px;
+
+}
+
+
+
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column; /* Colonne unique sur petits écrans */
+    }
+    .info {
+        border-right: none; /* Enlève la ligne séparatrice sur petits écrans */
+        border-bottom: 2px solid rgba(255, 255, 255, 0.1); /* Ligne séparatrice en bas */
+    }
+
+  
+
+
+    .contact .info {
+        border: none;
+    }
+
+    .overlay{
+        background: none;
+    }
+}
+
 
 
 @media (max-width: 1000px){
